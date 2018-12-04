@@ -88,6 +88,7 @@ public class Dao {
 		}finally {
 			if (rs != null) try { rs.close(); } catch(SQLException ex1) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex1) {}
+			if (stmt != null) try { stmt.close(); } catch(SQLException ex1) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex1) {}
 		}		
 		return result;
@@ -162,6 +163,7 @@ public class Dao {
 		}finally {
 			if (rs != null) try { rs.close(); } catch(SQLException ex1) {}
 			if (pstmt != null) try { pstmt.close(); } catch(SQLException ex1) {}
+			if (stmt != null) try { stmt.close(); } catch(SQLException ex1) {}
 			if (conn != null) try { conn.close(); } catch(SQLException ex1) {}
 		}		
 	}
@@ -191,6 +193,24 @@ public class Dao {
 				result.add(dto);
 				rs.next();
 			}
+		}catch(Exception e) {
+			System.out.println("DB 연동 오류입니다. : "+e.getMessage());
+		}finally {
+			if (rs != null) try { rs.close(); } catch(SQLException ex1) {}
+			if (stmt != null) try { stmt.close(); } catch(SQLException ex1) {}
+			if (conn != null) try { conn.close(); } catch(SQLException ex1) {}
+		}		
+		return result;
+	}
+	
+	public String[] find(String Email) {
+		String result[]=new String[2];
+		try {
+			sql="select user.Passwd,user.Name from user where user.Email='"+Email+"'";
+			rs=stmt.executeQuery(sql);
+			rs.next();
+			result[0]=rs.getString("Passwd");
+			result[1]=rs.getString("Name");
 		}catch(Exception e) {
 			System.out.println("DB 연동 오류입니다. : "+e.getMessage());
 		}finally {

@@ -1,14 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
 <script>
 function find(){
 	var email=$("#email").val();
 	if(email==""){
-    	alert("ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä");
+    	alert("ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”");
 	}else{
 		$.ajax({  
 		    type: "GET",  
@@ -16,7 +17,9 @@ function find(){
 		    data: "Email="+email,
 		   	datatype:"json",
 		    success: function(data){  
-		    
+		    	var Name=data.Name;
+		    	var Passwd=data.Passwd;
+		    	alert(Name+" ë‹˜ì˜ íŒ¨ìŠ¤ì›Œë“œëŠ” "+Passwd+"ì…ë‹ˆë‹¤.");
 		    },
 		    error : function(request,status,error) {  
 		    	alert("code:"+request.status+"\n"+"error:"+error);
@@ -30,8 +33,8 @@ function find(){
 </head>
 <body>
 	<form action="javascript:find()">
-		ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä<input type="text"id="email"><br>
-		<input type="submit"value="¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£ Ã£±â">
+		ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”<input type="text"id="email"><br>
+		<input type="submit"value="ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°">
 	</form>
 </body>
 </html>
