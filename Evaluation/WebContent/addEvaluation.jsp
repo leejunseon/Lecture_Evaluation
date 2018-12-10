@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
+<link href="http://localhost:8080/Evaluation/CSS/commonStyle.css" rel="stylesheet" type="text/css">
 <script>
 function addEvaluation(){
 	var lecture=$('#lecture').val();
@@ -44,14 +45,6 @@ function addEvaluation(){
 }
 </script>
 <title> 온라인 강의평가 </title>
-<style>
-	ul.h { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: hidden; background-color: DeepSkyBlue;}
-	li.h { float: left; box-shadow: 0 0 0 1px black inset; width: 25%;}
-	li.h a.h { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;}
-	li.h a.h:hover:not(.active) { background-color: midnightblue; }
-	.active { background-color: midnightblue; /*border-bottom: 2px solid #f00;*/}
-	#insidecontent{	background-color: lightgrey; }
-</style>
 </head>
 <body>
 	<h1><a href="main.jsp" style="text-decoration:none;"><font face="맑은 고딕" color="royalblue" >온라인 강의평가</font></a></h1>

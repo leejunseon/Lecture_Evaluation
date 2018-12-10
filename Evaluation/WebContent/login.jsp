@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
+<link href="http://localhost:8080/Evaluation/CSS/commonStyle.css" rel="stylesheet" type="text/css">
 <script>
 	function login(){
 		var Email=$('#Email').val();
@@ -34,14 +35,6 @@
 </script>
 <meta charset="EUC-KR">
 <title> 온라인 강의평가 </title>
-<style>
-	ul.h { list-style-type: none; margin: 0; padding: 0; width: 100%; overflow: hidden; background-color: DeepSkyBlue;}
-	li.h { float: left; box-shadow: 0 0 0 1px black inset; width: 25%;}
-	li.h a.h { display: block; color: white; text-align: center; padding: 14px 16px; text-decoration: none;}
-	li.h a.h:hover:not(.active) { background-color: midnightblue; }
-	.active { background-color: midnightblue; /*border-bottom: 2px solid #f00;*/}
-	#insidecontent{ background-color: lightgrey; }
-</style>
 </head>
 <body>
 	<h1><a href="main.jsp" style="text-decoration:none;"><font face="맑은 고딕" color="royalblue" >온라인 강의평가</font></a></h1>
@@ -54,11 +47,28 @@
 		</ul>
 	</div>
 	<div id="insidecontent">
+	<div id="edge"></div>
 		<form action="javascript:login()">
-			이메일:<input type="text" id="Email"/><br>
-			비밀번호:<input type="text" id="Passwd"/><br>
-			<input type="submit"value="로그인">
-			<input type="button" value="회원가입" onclick="location. href='signup.jsp'"/>
+		<div align="center"style="background-color:white;margin-left:30%;margin-right:30%;margin-top:50px;">
+			<table style="border-spacing:0 10px; width:60%;">
+				<tr>
+					<td>이메일:</td><td><input style="width:100%;"type="text" id="Email"/><br></td>
+				</tr>
+				<tr>
+					<td>비밀번호: </td><td><input style="width:100%;"type="text" id="Passwd"/><br></td>
+				</tr>
+				<tr style="height:5px;"></tr>
+				<tr>
+					<td colspan="2"><input type="submit"value="로그인"style="width:100%;height:40px;"><br></td>
+				</tr>
+				<tr style="height:50px;"></tr>
+			</table>
+			<div align="left"style="margin-left:10px;">
+				<input type="button" value="회원가입" onclick="location. href='signup.jsp'"/>
+				<input type="button" value="아이디 / 비밀번호 찾기" onclick="location. href='find.jsp'"/>
+			</div>
+			<div style="height:10px"></div>
+		</div>
 		</form>
 	</div>
 </body>

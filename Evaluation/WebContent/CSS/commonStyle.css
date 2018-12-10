@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+ul.h { 
+	list-style-type: none; 
+	margin: 0; 
+	padding: 0; 
+	width: 100%; 
+	overflow: hidden; 
+	background-color: DeepSkyBlue;
+}
+
+li.h { 
+	float: left; 
+	box-shadow: 0 0 0 1px black inset; 
+	width: 25%;
+}
+
+li.h a.h { 
+	display: block;
+	color: white; 
+	text-align: center; 
+	padding: 14px 16px; 
+	text-decoration: none;
+}
+
+li.h a.h:hover:not(.active) { 
+	background-color: midnightblue; 
+}
+
+.active { 
+	background-color: midnightblue; 
+	/*border-bottom: 2px solid #f00;*/
+}
+
+#insidecontent{	
+	background-color: lightgrey; 
+	height:500px;
+}
+#edge{
+	background-color: lightgrey; 
+	height:50px;
+}
