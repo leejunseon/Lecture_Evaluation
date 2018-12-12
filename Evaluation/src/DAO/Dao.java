@@ -22,7 +22,7 @@ public class Dao {
 		
 		 try {
 			 Class.forName("com.mysql.jdbc.Driver");
-			 String url = "jdbc:mysql://localhost:3306/evaluation_db";
+			 String url = "jdbc:mysql://13.209.161.83:3306/evaluation_db";
 			 conn = DriverManager.getConnection(url, "root", "airquay1!");
 			 stmt = conn.createStatement();
 		}catch(Exception e){
@@ -143,12 +143,12 @@ public class Dao {
 	//------------------------------addEvaluation------------------------------------
 	public void addEvaluation(String[] data) {
 		try {
-			sql="select user_key from user where name='"+data[7]+"'";
+			sql="select user_key from user where name='"+data[8]+"'";
 			rs=stmt.executeQuery(sql);
 			rs.next();
 			String user_key=rs.getString("user_key");
 			
-			pstmt=conn.prepareStatement("insert into evaluation (lecture,professor,grade,interest,clarity,kindness,recommendationyn,user_key)values (?,?,?,?,?,?,?,?)");
+			pstmt=conn.prepareStatement("insert into evaluation (lecture,professor,grade,interest,clarity,kindness,recommendationyn,user_key,comment)values (?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1,data[0]);
 	   		pstmt.setString(2,data[1]);
 	   		pstmt.setString(3,data[2]);
@@ -157,6 +157,7 @@ public class Dao {
 	   		pstmt.setString(6,data[5]);
 	   		pstmt.setString(7,data[6]);
 	   		pstmt.setString(8, user_key);
+	   		pstmt.setString(9,data[7]);
 	   		pstmt.executeUpdate();
 		}catch(Exception e) {
 			System.out.println("DB 연동 오류입니다. : "+e.getMessage());
@@ -175,7 +176,10 @@ public class Dao {
 		Dto dto;
 		
 		try {
-			sql="SELECT * FROM evaluation"+ 
+			sql="SELECT Lecture,Professor,Grade,Interest,Clarity,Kindness,RecommendationYN,comment,University"+
+				" FROM evaluation"+
+				" left join user"+ 
+				" on user.User_key=evaluation.User_key"+
 				" WHERE lecture LIKE '%"+search+"%' or professor like '%"+search+"%'";
 			rs=stmt.executeQuery(sql);
 			rs.last();
@@ -190,6 +194,8 @@ public class Dao {
 				dto.setClarity(rs.getString("Clarity"));
 				dto.setKindness(rs.getString("Kindness"));
 				dto.setRecommendationYN(rs.getString("RecommendationYN"));
+				dto.setComment(rs.getString("comment"));
+				dto.setUniversity(rs.getString("University"));
 				result.add(dto);
 				rs.next();
 			}

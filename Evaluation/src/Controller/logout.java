@@ -1,28 +1,23 @@
 package Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.simple.JSONObject;
-
-import DAO.Dao;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class getParticipation
+ * Servlet implementation class logout
  */
-public class getParticipation extends HttpServlet {
+public class logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getParticipation() {
+    public logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,23 +38,8 @@ public class getParticipation extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		Dao dao=new Dao();
-		String result[];
-		
-		result=dao.getParticipation();
-		
-		JSONObject json = new JSONObject();
-		json.put("user", result[0]);
-		json.put("evaluation", result[1]);
-			
-		response.setContentType("application/json");
-		PrintWriter out;
-		try{
-			out = response.getWriter();
-			out.print(json);
-		}catch(IOException e){
-			e.printStackTrace();
-		}
+		HttpSession session = request.getSession();
+	    session.invalidate();
 	}
 
 }

@@ -38,6 +38,9 @@ public class getNumbers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		Dao dao=new Dao();
 		String result[];
 		
@@ -45,8 +48,8 @@ public class getNumbers extends HttpServlet {
 		
 		JSONObject json = new JSONObject();
 		json.put("member", result[0]);
-		json.put("evaluation", result[1]);
-		json.put("university", result[2]);
+		json.put("university", result[1]);
+		json.put("evaluation", result[2]);
 			
 		response.setContentType("application/json");
 		PrintWriter out;

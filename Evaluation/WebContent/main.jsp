@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
-<link href="http://localhost:8080/Evaluation/CSS/commonStyle.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=7"></script>
+<link href="http://13.209.161.83:8080/Evaluation/CSS/commonStyle.css?ver=7" rel="stylesheet" type="text/css">
 <script>
 	var memberN;
 	var evaluationN;
@@ -13,11 +13,12 @@
 	
 	$(document).ready(function() {
 		getNumbers();	
+		$('#insidecontent').css('height', $(window).height ()-150);
 	});
 	
 	function getNumbers(){
 		$.ajax({  
-		    type: "GET",  
+		    type: "POST",  
 		    url: "getNumbers",  
 		   	datatype:"json",
 		    success: function(data){  
@@ -33,24 +34,50 @@
 		    }
 		});
 	}
+	
+	function logout(){
+		$.ajax({  
+		    type: "POST",  
+		    url: "logout",  
+		   	datatype:"json",
+		    success: function(data){  
+		    	alert("ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		    	location.href="login.jsp"
+		    },
+		    error : function(request,status,error) {  
+		    	alert("code:"+request.status+"\n"+"error:"+error);
+		    }
+		});	}
 
 </script>
-<title> ¿Â¶óÀÎ °­ÀÇÆò°¡ </title>
+<title> ì˜¨ë¼ì¸ ê°•ì˜í‰ê°€ </title>
 </head>
 <body>
-	<h1><a href="main.jsp" style="text-decoration:none;"><font face="¸¼Àº °íµñ" color="royalblue" >¿Â¶óÀÎ °­ÀÇÆò°¡</font></a></h1>
+	<h1><a href="main.jsp" style="text-decoration:none;"><font face="ë§‘ì€ ê³ ë”•" color="royalblue" >ì˜¨ë¼ì¸ ê°•ì˜í‰ê°€</font></a></h1>
 	<div id="navi">
 		<ul class="h">
-		<li class="h"><a class="h" href="login.jsp">·Î±×ÀÎ</a></li>
-		<li class="h"><a class="h" href="signup.jsp">È¸¿ø°¡ÀÔ</a></li>
-		<li class="h"><a class="h" href="addEvaluation.jsp">°­ÀÇÆò°¡ µî·Ï</a></li>
-		<li class="h"><a class="h" href="searchEvaluation.jsp">°­ÀÇÆò°¡ Á¶È¸</a></li>
+		<li class="h"><a class="h" href="login.jsp">ë¡œê·¸ì¸</a></li>
+		<li class="h"><a class="h" href="signup.jsp">íšŒì›ê°€ì…</a></li>
+		<li class="h"><a class="h" href="addEvaluation.jsp">ê°•ì˜í‰ê°€ ë“±ë¡</a></li>
+		<li class="h"><a class="h" href="searchEvaluation.jsp">ê°•ì˜í‰ê°€ ì¡°íšŒ</a></li>
+		<li class="h"><a class="h" href="javascript:logout();">ë¡œê·¸ì•„ì›ƒ</a></li>
 		</ul>
 	</div>
 	<div id="insidecontent">
-		È¸¿ø : <div id="member"></div>
-		µî·ÏµÈ °­ÀÇÆò°¡ : <div id="evaluation"></div>
-		µî·ÏµÈ ÇĞ±³ : <div id="university"></div>
+		<div id="edge"></div>
+		<div id="table" align="center">
+			<table style="border-spacing:0 10px;">
+				<tr>
+					<td align="center">íšŒì›  <span id="member"></span>ëª…</td>
+				</tr>
+				<tr>
+					<td align="center">ë“±ë¡ëœ ê°•ì˜í‰ê°€  <span id="evaluation"></span>ê±´</td>
+				</tr>
+				<tr>
+					<td align="center">ë“±ë¡ëœ í•™êµ <span id="university"></span>ê°œ</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>

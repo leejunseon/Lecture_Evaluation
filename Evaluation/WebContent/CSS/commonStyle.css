@@ -12,7 +12,7 @@ ul.h {
 li.h { 
 	float: left; 
 	box-shadow: 0 0 0 1px black inset; 
-	width: 25%;
+	width: 20%;
 }
 
 li.h a.h { 
@@ -29,7 +29,6 @@ li.h a.h:hover:not(.active) {
 
 .active { 
 	background-color: midnightblue; 
-	/*border-bottom: 2px solid #f00;*/
 }
 
 #insidecontent{	
@@ -39,4 +38,11 @@ li.h a.h:hover:not(.active) {
 #edge{
 	background-color: lightgrey; 
 	height:50px;
+}
+#table{
+	background-color:white;
+	margin-left:30%;
+	margin-right:30%;
+	margin-top:50px;
+	border: 1px solid royalblue;
 }

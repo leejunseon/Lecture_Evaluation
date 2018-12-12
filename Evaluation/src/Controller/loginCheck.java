@@ -8,21 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 
-import DAO.Dao;
-
 /**
- * Servlet implementation class getParticipation
+ * Servlet implementation class loginCheck
  */
-public class getParticipation extends HttpServlet {
+public class loginCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public getParticipation() {
+    public loginCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,15 +42,17 @@ public class getParticipation extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		Dao dao=new Dao();
-		String result[];
-		
-		result=dao.getParticipation();
-		
+		HttpSession session = request.getSession();
+		String result="";
 		JSONObject json = new JSONObject();
-		json.put("user", result[0]);
-		json.put("evaluation", result[1]);
-			
+		
+		if((Boolean)session.getAttribute("login")!=null) {
+			result="true";
+		}else {
+			result="false";
+		}
+		
+		json.put("result", result);
 		response.setContentType("application/json");
 		PrintWriter out;
 		try{

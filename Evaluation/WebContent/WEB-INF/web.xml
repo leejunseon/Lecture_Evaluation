@@ -65,4 +65,33 @@
     <servlet-name>find</servlet-name>
     <url-pattern>/find</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>Controller.logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>loginCheck</servlet-name>
+    <servlet-class>Controller.loginCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginCheck</servlet-name>
+    <url-pattern>/loginCheck</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>Set Character Encoding</filter-name>
+    <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+    <filter-name>Set Character Encoding</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
 </web-app>

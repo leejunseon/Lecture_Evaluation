@@ -63,6 +63,8 @@ public class searchEvaluation extends HttpServlet {
 			json.put("Clarity", result.get(i).getClarity());
 			json.put("Kindness", result.get(i).getKindness());
 			json.put("RecommendationYN", result.get(i).getRecommendationYN());
+			json.put("comment", result.get(i).getComment());
+			json.put("University", result.get(i).getUniversity());
 			jsonResult.add(json);
 		}
 		

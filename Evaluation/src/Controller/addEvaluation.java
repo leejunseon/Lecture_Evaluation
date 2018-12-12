@@ -43,7 +43,7 @@ public class addEvaluation extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 
 		Dao dao=new Dao();
-		String[] data=new String[8];
+		String[] data=new String[9];
 		int flag=1;
 		String result="";
 		
@@ -54,7 +54,8 @@ public class addEvaluation extends HttpServlet {
 		data[4]=request.getParameter("clarity");
 		data[5]=request.getParameter("kindness");
 		data[6]=request.getParameter("recommendationYN");
-		data[7]=request.getParameter("Name");
+		data[7]=request.getParameter("comment");
+		data[8]=request.getParameter("Name");
 		
 		for(int i=0;i<8;i++) {
 			if(data[i]==null) {

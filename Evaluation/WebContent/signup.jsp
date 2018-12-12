@@ -1,12 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" 
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=1"></script>
-<link href="http://localhost:8080/Evaluation/CSS/commonStyle.css" rel="stylesheet" type="text/css">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="https://code.jquery.com/jquery-3.0.0.min.js?ver=7"></script>
+<link href="http://13.209.161.83:8080/Evaluation/CSS/commonStyle.css?ver=7" rel="stylesheet" type="text/css">
 <script>
+$(document).ready(function() {
+	$('#insidecontent').css('height',  $(window).height ()-150);
+});
+
 function signup(){
 	var Email = $('#Email').val();
 	var Passwd = $('#Passwd').val();
@@ -15,7 +19,7 @@ function signup(){
 	var Major = $('#Major').val();
 	
 	$.ajax({  
-	    type: "GET",  
+	    type: "POST",  
 	    url: "signup",  
 	    data: "Email="+Email+
 	    "&Passwd="+Passwd+
@@ -25,10 +29,10 @@ function signup(){
 	   	datatype:"json",
 	    success: function(data){  
 	    	if(data.result=="success"){
-	    		alert("È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
+	    		alert("íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 	    		location.href="login.jsp";
 	    	}else{
-	    		alert("ÀÌ¸ŞÀÏÀÌ Áßº¹µË´Ï´Ù. ´Ù¸¥ ÀÌ¸ŞÀÏÀ» »ç¿ëÇÏ½Ê½Ã¿À.");
+	    		alert("ì´ë©”ì¼ì´ ì¤‘ë³µë©ë‹ˆë‹¤. ë‹¤ë¥¸ ì´ë©”ì¼ì„ ì‚¬ìš©í•˜ì‹­ì‹œì˜¤.");
 	    	}
 	    },
 	    error : function(request,status,error) {  
@@ -36,27 +40,62 @@ function signup(){
 	    }
 	});  
 }	
+
+function logout(){
+	$.ajax({  
+	    type: "POST",  
+	    url: "logout",  
+	   	datatype:"json",
+	    success: function(data){  
+	    	alert("ë¡œê·¸ì•„ì›ƒ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+	    	location.href="login.jsp"
+	    },
+	    error : function(request,status,error) {  
+	    	alert("code:"+request.status+"\n"+"error:"+error);
+	    }
+	});
+}
 </script>
-<title> ¿Â¶óÀÎ °­ÀÇÆò°¡ </title>
+<title> ì˜¨ë¼ì¸ ê°•ì˜í‰ê°€ </title>
 </head>
 <body>
-	<h1><a href="main.jsp" style="text-decoration:none;"><font face="¸¼Àº °íµñ" color="royalblue" >¿Â¶óÀÎ °­ÀÇÆò°¡</font></a></h1>
+	<h1><a href="main.jsp" style="text-decoration:none;"><font face="ë§‘ì€ ê³ ë”•" color="royalblue" >ì˜¨ë¼ì¸ ê°•ì˜í‰ê°€</font></a></h1>
 	<div id="navi">
 		<ul class="h">
-		<li class="h"><a class="h" href="login.jsp">·Î±×ÀÎ</a></li>
-		<li class="h"><a class="h active" href="signup.jsp">È¸¿ø°¡ÀÔ</a></li>
-		<li class="h"><a class="h" href="addEvaluation.jsp">°­ÀÇÆò°¡ µî·Ï</a></li>
-		<li class="h"><a class="h" href="searchEvaluation.jsp">°­ÀÇÆò°¡ Á¶È¸</a></li>
+		<li class="h"><a class="h" href="login.jsp">ë¡œê·¸ì¸</a></li>
+		<li class="h"><a class="h active" href="signup.jsp">íšŒì›ê°€ì…</a></li>
+		<li class="h"><a class="h" href="addEvaluation.jsp">ê°•ì˜í‰ê°€ ë“±ë¡</a></li>
+		<li class="h"><a class="h" href="searchEvaluation.jsp">ê°•ì˜í‰ê°€ ì¡°íšŒ</a></li>
+		<li class="h"><a class="h" href="javascript:logout();">ë¡œê·¸ì•„ì›ƒ</a></li>
 		</ul>
 	</div>
 	<div id="insidecontent">
+	<div id="edge"></div>
 		<form id="form"action="javascript:signup()">
-			ÀÌ¸ŞÀÏ:<input type="text" id="Email"/><br>
-			ºñ¹Ğ¹øÈ£:<input type="text" id="Passwd"/><br>
-			ÀÌ¸§:<input type="text" id="Name"/><br>
-			´ëÇĞ±³:<input type="text" id="University"/><br>
-			Àü°ø:<input type="text" id="Major"/><br>
-			<input type="submit">
+			<div id="table"align="center">
+				<table  style="border-spacing:0 10px; width:60%;">
+					<tr>
+						<td>ì´ë©”ì¼:</td><td><input type="text" id="Email"/></td>
+					</tr>
+					<tr>
+						<td>ë¹„ë°€ë²ˆí˜¸:</td><td><input type="password" id="Passwd"/></td>
+					</tr>
+					<tr>
+						<td>ì´ë¦„:</td><td><input type="text" id="Name"/></td>
+					</tr>
+					<tr>
+						<td>ëŒ€í•™êµ:</td><td><input type="text" id="University"/></td>
+					</tr>
+					<tr>
+						<td>ì „ê³µ:</td><td><input type="text" id="Major"/></td>
+					</tr>
+				</table>
+				<div align="right"style="margin-right:10px;">
+					<input type="submit"value="ë“±ë¡"/>
+					<input type="reset"value="ì·¨ì†Œ"/>
+				</div>
+				<div style="height:10px"></div>
+			</div>
 		</form>
 	</div>
 </body>

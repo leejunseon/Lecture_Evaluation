@@ -17,8 +17,15 @@ public class Dto {
 	private String Clarity;
 	private String Kindness;
 	private String RecommendationYN;
+	private String comment;
 	
 	
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public String getUser_key() {
 		return User_key;
 	}
